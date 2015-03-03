@@ -9,6 +9,10 @@
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
     <title>Compile Hogan Template Online</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/hogan.js/3.0.2/hogan.js"></script>
+    <style>
+      textarea { font-family: monospace; width:100%; display:block; }
+    </style>
   </head>
 
   <body>
@@ -31,32 +35,35 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a id="compile-mustache-templates-online" class="anchor" href="#compile-mustache-templates-online" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compile Mustache Templates Online</h3>
+        <h3><a id="compile-mustache-templates-online" class="anchor" href="#compile-mustache-templates-online" aria-hidden="true"><span class="octicon octicon-link"></span></a>        Compile Mustache Templates Online</h3>
 
-<p>Uses <a href="hogan.js">http://twitter.github.io/hogan.js/</a> to compile templates in the browser.</p>
+<p>Uses <a href="http://twitter.github.io/hogan.js/">hogan.js</a> to compile templates in the browser.</p>
 
-<h2>
-<a id="template" class="anchor" href="#template" aria-hidden="true"><span class="octicon octicon-link"></span></a>Template</h2>
+<h2>Template</h2>
+<textarea id="template"></textarea>
+<button onclick="doit()">Do it.</button>
 
-<p>
-Do it.</p>
+<h2>Compiled</h2>
+<textarea id="output"></textarea>
 
-<h2>
-<a id="compiled" class="anchor" href="#compiled" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compiled</h2>
-
-<p></p>
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Compile Hogan Template Online maintained by <a href="https://github.com/DesignAShirt">DesignAShirt</a></p>
+        <p class="copyright">Compile Hogan Templates Online maintained by <a href="https://github.com/DesignAShirt">DesignAShirt</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
 
+<script>
+  var template = document.querySelector('#template')
+    , output = document.querySelector('#output');
+  function doit() {
+    output.value = hogan.compile(template.value);
+  }
+</script>
     
 
   </body>
