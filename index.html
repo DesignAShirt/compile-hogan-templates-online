@@ -42,7 +42,11 @@
 <h2>Template</h2>
 <textarea id="template"></textarea>
 <button onclick="doit()">Do it.</button>
-
+<div style="background:rgba(0,0,0,.1);padding:15px;margin:20px 0;">
+  <label><input type="text" data-option="delimiters" value="{{ }}"></label>
+  <label><input type="checkbox" data-option="disableLambda"> <a href="http://mustache.github.io/mustache.5.html#Sections" target="_blank">Disable lambdas</a></label>
+  <label><input type="checkbox" data-option="asString" checked readonly> Output String (the reason you're here)</label>
+</div>
 <h2>Compiled</h2>
 <textarea id="output"></textarea>
 
@@ -60,8 +64,15 @@
 <script>
   var template = document.querySelector('#template')
     , output = document.querySelector('#output');
+  function hoganOptions() {
+    var opts = { asString: true };
+    Array.prototype.slice.call(document.querySelectorAll('label>input')).forEach(function(element) {
+      opts[element.getAttribute('data-option')] = 'checked' in element ? element.checked : element.value;
+    });
+    return opts;
+  }
   function doit() {
-    output.value = hogan.compile(template.value);
+    output.value = Hogan.compile(template.value, hoganOptions());
   }
 </script>
     
