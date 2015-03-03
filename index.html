@@ -47,8 +47,15 @@
   <label><input type="checkbox" data-option="disableLambda"> <a href="http://mustache.github.io/mustache.5.html#Sections" target="_blank">Disable lambdas</a></label>
   <label><input type="checkbox" data-option="asString" checked disabled> Output String (the reason you're here)</label>
 </div>
+
 <h2>Compiled</h2>
 <textarea id="output"></textarea>
+
+<h2>Test</h2>
+Use the console to test the template with <code>render({ ... your values ... })</code>.
+<div id="test">
+  
+</div>
 
       </section>
     </div>
@@ -73,6 +80,12 @@
   }
   function doit() {
     output.value = Hogan.compile(template.value, hoganOptions());
+  }
+  function render(values) {
+    var opts = hoganOptions();
+    opts.asString = false;
+    var compiledTemplate = Hogan.compile(template.value, opts);
+    document.querySelector('#test').innerHTML = '<hr>' + compiledTemplate.render(values || {});
   }
 </script>
     
